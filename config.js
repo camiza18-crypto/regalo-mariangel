@@ -12,7 +12,7 @@
 window.APP_CONFIG = Object.freeze({
   // Identidad y Nombres
   recipientName: "Mariangel",
-  senderName: "[ NOMBRE DEL REMITENTE ]", // Reemplaza con tu nombre o apodo
+  senderName: "Camilo", // Puedes cambiarlo por tu apodo si lo prefieres
 
   // Pantalla de Bienvenida (Etapa A)
   welcome: {
