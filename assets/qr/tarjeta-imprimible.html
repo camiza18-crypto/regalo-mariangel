@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarjeta de Regalo Imprimible - Para Mariangel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #e5e5e5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .instructions-bar {
+      margin-bottom: 1.5rem;
+      background-color: #101010;
+      color: #F5F0E7;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .print-btn {
+      background: #C6A66B;
+      color: #101010;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Tarjeta postal física 10cm x 15cm aprox */
+    .printable-card {
+      width: 105mm;
+      min-height: 148mm;
+      background-color: #FAF6EF;
+      border: 1px solid #C6A66B;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16mm 10mm;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    /* Marco ornamental fino */
+    .card-border-inner {
+      position: absolute;
+      top: 5mm;
+      left: 5mm;
+      right: 5mm;
+      bottom: 5mm;
+      border: 0.5px solid rgba(198, 166, 107, 0.4);
+      pointer-events: none;
+    }
+
+    .card-header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26pt;
+      font-weight: 500;
+      color: #101010;
+      letter-spacing: 0.05em;
+      margin-bottom: 2mm;
+    }
+
+    .card-header p {
+      font-size: 9pt;
+      color: #6E6A64;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    .qr-container {
+      margin: 6mm 0;
+      padding: 4mm;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid rgba(198, 166, 107, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .qr-container img {
+      width: 48mm;
+      height: 48mm;
+      display: block;
+    }
+
+    .card-footer p {
+      font-size: 8.5pt;
+      color: #827C72;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .card-footer .sub {
+      font-size: 7.5pt;
+      color: #A09C94;
+      margin-top: 1.5mm;
+      text-transform: none;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .instructions-bar {
+        display: none !important;
+      }
+      .printable-card {
+        box-shadow: none;
+        border: 1px solid #C6A66B;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="instructions-bar">
+    <span>💡 Usa esta plantilla para imprimir la tarjeta física que entregarás a Mariangel.</span>
+    <button class="print-btn" onclick="window.print()">Imprimir (Ctrl + P)</button>
+  </div>
+
+  <div class="printable-card">
+    <div class="card-border-inner"></div>
+
+    <div class="card-header">
+      <h1>Para Mariangel</h1>
+      <p>Hoy es un día especial. Y quería que tuvieras algo más que un mensaje.</p>
+    </div>
+
+    <div class="qr-container">
+      <!-- Se enlaza automáticamente al archivo qr-mariangel.svg o png -->
+      <img src="./qr-mariangel.svg" alt="Código QR Para Mariangel" onerror="this.onerror=null; this.src='./qr-mariangel.png';">
+    </div>
+
+    <div class="card-footer">
+      <p>Escanea con la cámara de tu teléfono</p>
+      <p class="sub">Un regalo personal preparado para ti</p>
+    </div>
+  </div>
+
+</body>
+</html>

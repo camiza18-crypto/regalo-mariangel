@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Un regalo especial para Mariangel en su cumpleaños.">
+  <title>Para Mariangel</title>
+
+  <!-- Google Fonts: Mejora progresiva con fallbacks locales definidos en styles.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="is-loading">
+
+  <!-- ==========================================
+       REPRODUCTOR DE AUDIO AMBIENTAL (ETAPA C)
+       Minimalista, discreto y oculto hasta validar el archivo
+       ========================================== -->
+  <div id="audio-container" class="audio-container" hidden>
+    <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="Reproducir música ambiental">
+      <span class="audio-waves" aria-hidden="true">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+      <span class="audio-icon" aria-hidden="true">
+        <!-- Icono Play / Pause en SVG -->
+        <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <polygon points="6 4 20 12 6 20 6 4"></polygon>
+        </svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <rect x="5" y="4" width="4" height="16"></rect>
+          <rect x="15" y="4" width="4" height="16"></rect>
+        </svg>
+      </span>
+      <span id="audio-status-text" class="audio-label">Música</span>
+    </button>
+    <audio id="ambient-audio" preload="auto" loop></audio>
+  </div>
+
+  <!-- ==========================================
+       CONTENEDOR PRINCIPAL DE EXPERIENCIA
+       ========================================== -->
+  <main id="app" class="experience-viewport">
+
+    <!-- ETAPA A: PANTALLA DE BIENVENIDA -->
+    <section id="screen-welcome" class="screen screen-welcome active" aria-label="Pantalla de bienvenida">
+      <div class="screen-content welcome-wrapper">
+        <header class="welcome-header">
+          <span class="accent-line" aria-hidden="true"></span>
+          <h1 id="welcome-title" class="welcome-title">Para Mariangel</h1>
+          <p id="welcome-subtitle" class="welcome-subtitle">
+            Hoy es un día especial. Y quería que tuvieras algo más que un mensaje.
+          </p>
+        </header>
+
+        <!-- SOBRE DIGITAL INTERACTIVO 3D -->
+        <div class="envelope-scene" aria-hidden="true">
+          <div id="envelope" class="envelope">
+            <!-- Solapa superior plegable -->
+            <div class="envelope-flap" id="envelope-flap">
+              <svg class="flap-svg" viewBox="0 0 320 140" preserveAspectRatio="none">
+                <polygon points="0,0 320,0 160,135" class="flap-polygon" />
+                <path d="M 0 0 L 160 135 L 320 0" class="flap-gold-stroke" />
+              </svg>
+            </div>
+            
+            <!-- Sello dorado de cera digital -->
+            <div class="wax-seal" id="wax-seal" aria-hidden="true">
+              <div class="seal-inner">
+                <svg class="seal-emblem" viewBox="0 0 40 40" width="22" height="22">
+                  <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2,2"/>
+                  <path d="M20 7 L23 16 L32 16 L25 21 L28 30 L20 25 L12 30 L15 21 L8 16 L17 16 Z" fill="currentColor" opacity="0.85"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Cuerpo del sobre -->
+            <div class="envelope-body">
+              <!-- Bolsillo interior donde asoma la carta -->
+              <div class="letter-preview" id="letter-preview">
+                <div class="preview-line"></div>
+                <div class="preview-line short"></div>
+              </div>
+              <svg class="pocket-svg" viewBox="0 0 320 200" preserveAspectRatio="none">
+                <polygon points="0,200 160,85 320,200" class="pocket-bottom" />
+                <polygon points="0,0 160,110 0,200" class="pocket-left" />
+                <polygon points="320,0 160,110 320,200" class="pocket-right" />
+                <path d="M 0 0 L 160 110 L 0 200" class="pocket-fold-left" />
+                <path d="M 320 0 L 160 110 L 320 200" class="pocket-fold-right" />
+                <path d="M 0 200 L 160 85 L 320 200" class="pocket-fold-bottom" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón de apertura -->
+        <div class="welcome-actions">
+          <button id="open-envelope-btn" class="btn btn-gold" type="button">
+            <span class="btn-text" id="open-btn-text">Abrir tu regalo</span>
+            <span class="btn-glow" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA B: LA CARTA -->
+    <section id="screen-letter" class="screen screen-letter" aria-label="Carta personal" aria-hidden="true">
+      <div class="letter-scroll-area">
+        <article class="letter-sheet">
+          <div class="paper-texture" aria-hidden="true"></div>
+          
+          <!-- Marco dorado sutil de papelería editorial -->
+          <div class="sheet-frame" aria-hidden="true">
+            <span class="corner-ornament top-left"></span>
+            <span class="corner-ornament top-right"></span>
+            <span class="corner-ornament bottom-left"></span>
+            <span class="corner-ornament bottom-right"></span>
+          </div>
+
+          <!-- Encabezado de la carta -->
+          <header class="letter-header">
+            <div class="letter-date" id="letter-date" aria-label="Fecha"></div>
+            <h2 id="letter-heading" class="letter-title">Feliz cumpleaños, Mariangel.</h2>
+            <div class="gold-divider" aria-hidden="true">
+              <span class="divider-line"></span>
+              <span class="divider-diamond">◆</span>
+              <span class="divider-line"></span>
+            </div>
+          </header>
+
+          <!-- Cuerpo de párrafos inyectados de forma segura -->
+          <div id="letter-body" class="letter-body">
+            <!-- Párrafos renderizados dinámicamente mediante textContent -->
+          </div>
+
+          <!-- Firma del remitente -->
+          <footer class="letter-footer">
+            <p class="signature-greeting" id="signature-greeting">Con cariño,</p>
+            <p class="signature-name" id="signature-name">[ NOMBRE DEL REMITENTE ]</p>
+          </footer>
+
+          <!-- Botón de transición a la sorpresa final -->
+          <div class="letter-actions">
+            <button id="surprise-btn" class="btn btn-gold-outline" type="button">
+              <span id="surprise-btn-text">Hay algo más para ti</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ETAPA D: MENSAJE FINAL SORPRESA -->
+    <section id="screen-surprise" class="screen screen-surprise" aria-label="Mensaje final sorpresa" aria-hidden="true">
+      <div class="screen-content surprise-wrapper">
+        <div class="surprise-card">
+          <div class="surprise-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.3-6.2-4.5-6.2 4.5 2.4-7.3-6.2-4.5h7.6z"/>
+            </svg>
+          </div>
+          <blockquote class="surprise-quote">
+            <p id="surprise-quote-text">
+              “Que la vida te sorprenda con cosas tan bonitas como las que todavía te quedan por descubrir.”
+            </p>
+          </blockquote>
+          <div class="surprise-signature">
+            <h3 id="surprise-recipient" class="surprise-name">Mariangel</h3>
+            <p id="surprise-wish" class="surprise-subtitle">Feliz cumpleaños.</p>
+          </div>
+          <div class="surprise-actions">
+            <button id="back-to-letter-btn" class="btn btn-subtle" type="button">
+              <span class="btn-arrow-back" aria-hidden="true">←</span>
+              <span id="back-btn-text">Volver a la carta</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RESPALDO SIN JAVASCRIPT (Mejora progresiva y accesibilidad) -->
+  <noscript>
+    <div class="noscript-banner">
+      <div class="noscript-paper">
+        <h1>Para Mariangel</h1>
+        <h2>Feliz cumpleaños, Mariangel.</h2>
+        <p>Hoy quiero desearte algo más que un feliz cumpleaños. Quiero desearte días que te hagan sonreír de verdad, tranquilidad para los momentos difíciles, motivos para sentirte orgullosa de ti y personas que sepan valorar la persona que eres.</p>
+        <p>A veces, un regalo no necesita ser grande para tener significado. A veces basta con detenerse un momento, pensar en alguien y dedicarle unas palabras que nazcan de verdad.</p>
+        <p>Por eso preparé esto para ti. Para recordarte que tu cumpleaños merece celebrarse y que, en medio de tantas cosas, siempre vale la pena hacer espacio para los detalles que tienen intención.</p>
+        <p>Espero que este nuevo año de tu vida te acerque a aquello que deseas, te regale momentos bonitos y te dé muchas razones para seguir adelante con ilusión.</p>
+        <p>Feliz cumpleaños, Mariangel. Espero que hoy recibas mucho cariño y que guardes este pequeño detalle como un recuerdo bonito de tu día.</p>
+        <p class="noscript-sign">Con cariño,<br>[ NOMBRE DEL REMITENTE ]</p>
+        <hr>
+        <p class="noscript-quote">“Que la vida te sorprenda con cosas tan bonitas como las que todavía te quedan por descubrir.”</p>
+      </div>
+    </div>
+  </noscript>
+
+  <!-- SCRIPTS -->
+  <script src="./config.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

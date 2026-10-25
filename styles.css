@@ -1,0 +1,928 @@
+/**
+ * ====================================================================
+ * ESTILOS: PARA MARIANGEL
+ * Diseño editorial premium, minimalista, cinematográfico e íntimo.
+ * ====================================================================
+ */
+
+:root {
+  /* Paleta cromática oficial */
+  --bg-deep: #101010;
+  --bg-cream: #F5F0E7;
+  --bg-paper: #FAF6EF;
+  --gold: #C6A66B;
+  --gold-light: #DFC493;
+  --gold-dark: #98783E;
+  --gold-subtle: rgba(198, 166, 107, 0.25);
+  --gold-border: rgba(198, 166, 107, 0.4);
+  
+  /* Textos */
+  --text-dark-primary: #F5F0E7;
+  --text-dark-secondary: #9E988E;
+  --text-dark-muted: #6B665E;
+  
+  --text-light-primary: #1C1917;
+  --text-light-secondary: #524E48;
+  --text-light-muted: #827C72;
+
+  /* Tipografías */
+  --font-serif: 'Cormorant Garamond', Garamond, 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Sombras y elevaciones */
+  --shadow-envelope: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(198, 166, 107, 0.08);
+  --shadow-paper: 0 20px 40px rgba(16, 16, 16, 0.08), 0 2px 8px rgba(16, 16, 16, 0.04);
+  --shadow-seal: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+
+  /* Curva de aceleración cinematográfica */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ====================================================================
+   REINICIO Y BASE
+   ==================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-deep);
+  color: var(--text-dark-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: var(--bg-deep);
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Evitar FOUC (Flash of Unstyled Content) */
+body.is-loading {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+body.is-ready {
+  opacity: 1;
+}
+
+/* ====================================================================
+   CONTENEDOR DE EXPERIENCIA Y PANTALLAS
+   ==================================================================== */
+.experience-viewport {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100dvh;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease-smooth), visibility 0.8s;
+  z-index: 1;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+  position: relative;
+}
+
+/* Transición suave entre pantallas */
+.screen.fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+}
+
+/* ====================================================================
+   ETAPA A: PANTALLA DE BIENVENIDA
+   ==================================================================== */
+.screen-welcome {
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(198, 166, 107, 0.07) 0%, transparent 80%),
+    radial-gradient(circle at 50% 100%, rgba(20, 20, 20, 0.9) 0%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.welcome-wrapper {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  margin: auto;
+}
+
+.welcome-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.accent-line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--gold);
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+}
+
+.welcome-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--gold-light);
+  line-height: 1.15;
+}
+
+.welcome-subtitle {
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+  color: var(--text-dark-secondary);
+  max-width: 380px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ====================================================================
+   SOBRE DIGITAL 3D INTERACTIVO
+   ==================================================================== */
+.envelope-scene {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  margin: 0.5rem auto;
+  position: relative;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.75));
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #181818, #131313);
+  border-radius: 4px;
+  border: 1px solid rgba(198, 166, 107, 0.25);
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.pocket-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pocket-bottom {
+  fill: #161616;
+}
+
+.pocket-left {
+  fill: #1a1a1a;
+}
+
+.pocket-right {
+  fill: #141414;
+}
+
+.pocket-fold-left,
+.pocket-fold-right,
+.pocket-fold-bottom {
+  stroke: rgba(198, 166, 107, 0.2);
+  stroke-width: 0.8px;
+  fill: none;
+}
+
+/* Carta asomándose en el sobre */
+.letter-preview {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  height: 140px;
+  background-color: var(--bg-paper);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.preview-line {
+  height: 2px;
+  background-color: rgba(198, 166, 107, 0.35);
+  border-radius: 1px;
+  width: 100%;
+}
+
+.preview-line.short {
+  width: 60%;
+}
+
+/* Solapa superior abatible en 3D */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 135px;
+  transform-origin: top center;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  transform-style: preserve-3d;
+}
+
+.flap-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.flap-polygon {
+  fill: #1c1c1c;
+}
+
+.flap-gold-stroke {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.2px;
+  opacity: 0.7;
+}
+
+/* Sello de cera digital en dorado suave */
+.wax-seal {
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e2c99b 0%, #C6A66B 50%, #92753a 100%);
+  box-shadow: var(--shadow-seal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  transition: opacity 0.4s ease, transform 0.5s var(--ease-smooth);
+  color: #553e14;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.seal-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estado al abrir el sobre */
+.envelope.is-opening .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+.envelope.is-opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.is-opening .letter-preview {
+  transform: translateY(-55px);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ====================================================================
+   BOTONES Y ACCIONES
+   ==================================================================== */
+.welcome-actions {
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  min-height: 48px;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s var(--ease-smooth);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #1a1712;
+  box-shadow: 0 4px 20px rgba(198, 166, 107, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold:hover, .btn-gold:active {
+  background: linear-gradient(135deg, #ebd6b0, var(--gold-light));
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(198, 166, 107, 0.4);
+}
+
+.btn-gold-outline {
+  background-color: transparent;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border);
+  padding: 0.9rem 1.8rem;
+}
+
+.btn-gold-outline:hover, .btn-gold-outline:active {
+  background-color: var(--gold-subtle);
+  border-color: var(--gold);
+  color: #1a1712;
+  transform: translateY(-1px);
+}
+
+.btn-subtle {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-dark-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.88rem;
+}
+
+.btn-subtle:hover, .btn-subtle:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-dark-primary);
+  border-color: var(--gold);
+}
+
+.btn-arrow, .btn-arrow-back {
+  font-size: 1.1em;
+  transition: transform 0.25s ease;
+}
+
+.btn-gold-outline:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-subtle:hover .btn-arrow-back {
+  transform: translateX(-4px);
+}
+
+/* ====================================================================
+   ETAPA B: LA CARTA (PAPELERÍA EDITORIAL EN FONDO CREMA)
+   ==================================================================== */
+.screen-letter {
+  background-color: var(--bg-cream);
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--text-light-primary);
+}
+
+.letter-scroll-area {
+  width: 100%;
+  padding: 3rem 1.25rem 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.letter-sheet {
+  width: 100%;
+  max-width: 660px;
+  background-color: var(--bg-paper);
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 6vw, 3.5rem);
+  position: relative;
+  border: 1px solid rgba(198, 166, 107, 0.2);
+}
+
+/* Marco ornamental fino */
+.sheet-frame {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  border: 1px solid rgba(198, 166, 107, 0.22);
+  pointer-events: none;
+}
+
+.corner-ornament {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--gold);
+}
+
+.corner-ornament.top-left {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--gold);
+  border-left: 1.5px solid var(--gold);
+}
+
+.corner-ornament.top-right {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+}
+
+.corner-ornament.bottom-left {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid var(--gold);
+  border-left: 1.5px solid var(--gold);
+}
+
+.corner-ornament.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.letter-date {
+  font-size: 0.85rem;
+  color: var(--text-light-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.letter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+  font-weight: 500;
+  color: #1a1714;
+  line-height: 1.2;
+}
+
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  color: var(--gold);
+}
+
+.divider-line {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background-color: var(--gold);
+  opacity: 0.45;
+}
+
+.divider-diamond {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+/* Cuerpo de la carta */
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.letter-paragraph {
+  font-family: var(--font-sans);
+  font-size: clamp(1.02rem, 3.4vw, 1.12rem);
+  line-height: 1.85;
+  color: var(--text-light-secondary);
+  font-weight: 350;
+  text-align: left;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+}
+
+.letter-paragraph.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Firma */
+.letter-footer {
+  margin-top: 2.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(198, 166, 107, 0.15);
+  text-align: right;
+}
+
+.signature-greeting {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text-light-muted);
+}
+
+.signature-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1a1714;
+  letter-spacing: 0.02em;
+  margin-top: 0.2rem;
+}
+
+.letter-actions {
+  margin-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ====================================================================
+   ETAPA D: MENSAJE FINAL SORPRESA
+   ==================================================================== */
+.screen-surprise {
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(198, 166, 107, 0.08) 0%, transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.surprise-wrapper {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+}
+
+.surprise-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.surprise-icon {
+  color: var(--gold);
+  opacity: 0.9;
+  margin-bottom: -0.5rem;
+}
+
+.surprise-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 4.8vw, 1.95rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--gold-light);
+  letter-spacing: 0.02em;
+  padding: 0 0.5rem;
+}
+
+.surprise-signature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.surprise-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  font-weight: 600;
+  color: var(--text-dark-primary);
+  letter-spacing: 0.05em;
+}
+
+.surprise-subtitle {
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.surprise-actions {
+  margin-top: 1rem;
+}
+
+/* ====================================================================
+   ETAPA C: REPRODUCTOR DE AUDIO FLOTANTE Y DISCRETO
+   ==================================================================== */
+.audio-container {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  transition: opacity 0.4s ease;
+}
+
+.audio-container[hidden] {
+  display: none !important;
+}
+
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: rgba(16, 16, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 166, 107, 0.35);
+  color: var(--gold-light);
+  padding: 0.55rem 0.95rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.25s ease;
+  min-height: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.audio-btn:hover {
+  background-color: rgba(24, 24, 24, 0.9);
+  border-color: var(--gold);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.audio-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Ondas sonoras animadas */
+.audio-waves {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+}
+
+.audio-waves .bar {
+  display: block;
+  width: 2px;
+  background-color: var(--gold);
+  border-radius: 1px;
+  height: 3px;
+  transition: height 0.2s ease;
+}
+
+.audio-btn.is-playing .audio-waves .bar-1 {
+  animation: pulse-wave 1s ease-in-out infinite alternate;
+}
+
+.audio-btn.is-playing .audio-waves .bar-2 {
+  animation: pulse-wave 1.3s ease-in-out 0.2s infinite alternate;
+}
+
+.audio-btn.is-playing .audio-waves .bar-3 {
+  animation: pulse-wave 0.9s ease-in-out 0.4s infinite alternate;
+}
+
+@keyframes pulse-wave {
+  0% { height: 3px; }
+  100% { height: 12px; }
+}
+
+/* Iconos de Play / Pause */
+.audio-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-play, .icon-pause {
+  display: block;
+}
+
+.audio-btn .icon-pause {
+  display: none;
+}
+
+.audio-btn.is-playing .icon-play {
+  display: none;
+}
+
+.audio-btn.is-playing .icon-pause {
+  display: block;
+}
+
+/* En la pantalla de la carta (fondo crema), adaptar sutilmente el reproductor */
+body.on-letter-screen .audio-btn {
+  background-color: rgba(250, 246, 239, 0.85);
+  border-color: rgba(198, 166, 107, 0.45);
+  color: #38332d;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+body.on-letter-screen .audio-btn:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #1a1714;
+}
+
+/* ====================================================================
+   RESPALDO SIN JAVASCRIPT (NOSCRIPT)
+   ==================================================================== */
+.noscript-banner {
+  background-color: var(--bg-cream);
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  color: #1a1714;
+  display: flex;
+  justify-content: center;
+}
+
+.noscript-paper {
+  max-width: 640px;
+  background-color: var(--bg-paper);
+  padding: 3rem 2rem;
+  border: 1px solid rgba(198, 166, 107, 0.3);
+  box-shadow: var(--shadow-paper);
+}
+
+.noscript-paper h1 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.noscript-paper h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.noscript-paper p {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-light-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.noscript-sign {
+  margin-top: 2rem;
+  text-align: right;
+  font-style: italic;
+}
+
+.noscript-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* ====================================================================
+   ACCESIBILIDAD: PREFERS-REDUCED-MOTION
+   ==================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .screen {
+    transition: opacity 0.01ms !important;
+  }
+
+  .letter-paragraph {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .envelope-flap {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .envelope.is-opening .envelope-flap {
+    transform: rotateX(180deg) !important;
+  }
+
+  .audio-waves .bar {
+    animation: none !important;
+    height: 8px !important;
+  }
+}
+
+/* ====================================================================
+   RESPONSIVE: PANTALLAS PEQUEÑAS (MÓVILES)
+   ==================================================================== */
+@media (max-width: 480px) {
+  .envelope-scene {
+    max-width: 280px;
+    height: 180px;
+  }
+
+  .envelope-flap {
+    height: 120px;
+  }
+
+  .wax-seal {
+    width: 42px;
+    height: 42px;
+    top: 96px;
+  }
+
+  .letter-scroll-area {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .letter-sheet {
+    padding: 2.25rem 1.25rem;
+  }
+
+  .sheet-frame {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .audio-container {
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .audio-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.72rem;
+  }
+}
